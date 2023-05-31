@@ -89,30 +89,40 @@ const posts = [
 
     function missingTimeInDaysMonthsYears(postDate){
 
-        let passedTime =  ((Date.parse(new Date()) - Date.parse(postDate)) / 1000)
+        let passedTime = ((Date.parse(new Date()) - Date.parse(postDate)) / 1000)
+        
+        let timeDisplay = `"${passedTime} secondi fa"`
             
-            if( passedTime > 60){
+        if( passedTime > 60){
 
-                passedTime = Math.floor(passedTime / 60)
+            let minutiPassedTime = (passedTime / 60)
 
-                if(passedTime > 60 ){
+            timeDisplay =`"${minutiPassedTime} minuti fa"`
 
-                    passedTime = Math.floor(passedTime / 60 )
+                if(minutiPassedTime > 60 ){
 
-                    if(passedTime > 24){
+                    let orePassedTime = (minutiPassedTime / 60)
 
-                        passedTime = Math.floor(passedTime / 30) 
+                    timeDisplay = `"${orePassedTime} ore fa"`
+                    
+                    if(orePassedTime > 24){
 
-                        if(passedTime > 30){
+                        let giorniPassedTime = (orePassedTime / 24) 
 
-                            passedTime = Math.floor(passedTime / 12)
+                        timeDisplay = `"${giorniPassedTime} giorni fa"`
+                        
+                        if(giorniPassedTime > 30){
+
+                         let mesiPassedTime = (giorniPassedTime / 30)
+
+                            timeDisplay = `"${mesiPassedTime} mesi fa"`
                         }
                     
                     }    
                 }
             }
            
-        return passedTime
+        return timeDisplay
         }
 
     const container = document.getElementById('container')
@@ -124,7 +134,7 @@ posts.forEach(post => {
     const authorImage = author.image
 
     const authorName = author.name
-    
+    debugger
     const timePassed = missingTimeInDaysMonthsYears(created)
     
     let newPost = document.createElement('div')
