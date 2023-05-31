@@ -141,7 +141,7 @@ posts.forEach(post => {
     const authorImage = author.image
 
     const authorName = author.name
-    debugger
+    
     const timePassed = missingTimeInDaysMonthsYears(created)
     
     let newPost = document.createElement('div')
@@ -169,7 +169,7 @@ posts.forEach(post => {
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#" data-postid=${id}>
+                <a class="like-button id="${id}" js-like-button" href="#" data-postid=${id}>
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
                 </a>
@@ -181,8 +181,22 @@ posts.forEach(post => {
     </div>                 
     `
 
+    let buttonElement = document.getElementById("`${id}`")
+
+    let likeElement = document.getElementById(`"like-counter-${id}"`)
+    
+    buttonElement.addEventListener('click', function (){
+
+        let likeCounter = likes
+
+        likeCounter += 1
+
+        likeElement.innerHTML = likeCounter
+    })
     container.append(newPost)
 });
+
+
 
    
 
