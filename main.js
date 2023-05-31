@@ -87,11 +87,33 @@ const posts = [
             </div>            
         </div>*/
 
-function calcTimePassed(date){
+        function missingTimeInDaysMonthsYears(postDate){
 
-    let timePassed = Date.parse(date) 
+            let passedTime =  ((Date.parse(new Date()) - Date.parse(postDate)) / 1000)
+            
+            if( passedTime > 60){
 
-}
+                passedTime = Math.floor(passedTime / 60)
+
+                if(passedTime > 60 ){
+
+                    passedTime = Math.floor(passedTime / 60 )
+
+                    if(passedTime > 24){
+
+                        passedTime = Math.floor(passedTime / 30) 
+
+                        if(passedTime > 30){
+
+                            passedTime = Math.floor(passedTime / 12)
+                        }
+                    
+                    }    
+                }
+            }
+           
+            return passedTime
+        }
 const container = document.getElementById('container')
 
 posts.forEach(post => {
