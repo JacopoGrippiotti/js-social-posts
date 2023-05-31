@@ -87,9 +87,9 @@ const posts = [
             </div>            
         </div>*/
 
-        function missingTimeInDaysMonthsYears(postDate){
+    function missingTimeInDaysMonthsYears(postDate){
 
-            let passedTime =  ((Date.parse(new Date()) - Date.parse(postDate)) / 1000)
+        let passedTime =  ((Date.parse(new Date()) - Date.parse(postDate)) / 1000)
             
             if( passedTime > 60){
 
@@ -112,9 +112,10 @@ const posts = [
                 }
             }
            
-            return passedTime
+        return passedTime
         }
-const container = document.getElementById('container')
+
+    const container = document.getElementById('container')
 
 posts.forEach(post => {
 
@@ -123,6 +124,8 @@ posts.forEach(post => {
     const authorImage = author.image
 
     const authorName = author.name
+    
+    const timePassed = missingTimeInDaysMonthsYears(created)
     
     let newPost = document.createElement('div')
 
@@ -138,7 +141,7 @@ posts.forEach(post => {
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${authorName}</div>
-                <div class="post-meta__time"></div>
+                <div class="post-meta__time">${timePassed}</div>
             </div>                    
         </div>
     </div>
@@ -160,5 +163,9 @@ posts.forEach(post => {
         </div> 
     </div>                 
     `
+
+    container.append(newPost)
 });
+
+   
 
