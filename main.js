@@ -116,6 +116,13 @@ const posts = [
                          let mesiPassedTime = (giorniPassedTime / 30)
 
                             timeDisplay = `"${mesiPassedTime} mesi fa"`
+
+                            if(mesiPassedTime > 12){
+
+                                let anniPassedTime = (mesiPassedTime / 12)
+
+                                timeDisplay = `"${anniPassedTime} anni fa"`
+                            }
                         }
                     
                     }    
