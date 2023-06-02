@@ -119,7 +119,7 @@ const posts = [
 
                             if(mesiPassedTime > 12){
 
-                                let anniPassedTime = (mesiPassedTime / 12)
+                                let anniPassedTime = Math.floor(mesiPassedTime / 12)
 
                                 timeDisplay = `"${anniPassedTime} anni fa"`
                             }
@@ -188,10 +188,14 @@ const likeCounters = document.querySelectorAll('div.likes__counter > b.js-likes-
 
 likeButtons.forEach((button, index) =>{
 
-button.addEventListener('click', function(){
 
+
+button.addEventListener('click', function(event){
+
+    event.preventDefault()
     likeCounters[index].innerHTML = parseInt(likeCounters[index].innerHTML) + 1
 
+    
     return likeCounters[index]
 })
 
