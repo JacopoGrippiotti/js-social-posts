@@ -150,7 +150,6 @@ posts.forEach(post => {
 
     newPost.innerHTML +=
     `
-    <div class="post">
     <div class="post__header">
         <div class="post-meta">                    
             <div class="post-meta__icon">
@@ -169,7 +168,7 @@ posts.forEach(post => {
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
-                <a class="like-button id="${id}" js-like-button" href="#" data-postid=${id}>
+                <a class="like-button  js-like-button" href="#" data-postid=${id}>
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
                 </a>
@@ -177,26 +176,24 @@ posts.forEach(post => {
             <div class="likes__counter">
                 Piace a <b id="like-counter-${id}" class="js-likes-counter">${likes}</b> persone
             </div>
-        </div> 
-    </div>                 
+        </div>                 
     `
 
-    let buttonElement = document.getElementById("`${id}`")
-
-    let likeElement = document.getElementById(`"like-counter-${id}"`)
-    
-    buttonElement.addEventListener('click', function (){
-
-        let likeCounter = likes
-
-        likeCounter += 1
-
-        likeElement.innerHTML = likeCounter
-    })
     container.append(newPost)
 });
 
+const likeButtons = document.querySelectorAll('a.like-button')
+const likeCounters = document.querySelectorAll('div.likes__counter > b.js-likes-counter')
 
 
-   
+likeButtons.forEach((button, index) =>{
+
+button.addEventListener('click', function(){
+
+    likeCounters[index].innerHTML = parseInt(likeCounters[index].innerHTML) + 1
+
+    return likeCounters[index]
+})
+
+})
 
